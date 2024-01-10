@@ -18,8 +18,8 @@ jobs:
       - name: set-output
         id: vars
         run: |
-          version_number=$(sed -n 's/.*<b>App Version:<\/b>\(.*\)<\/span>.*/\1/p' index.html)
-          echo "version_number=${version_number}" >> "$GITHUB_ENV"
+          version_number=$(sed -n 's/.*<b>App Version:<\/b> \(.*\)<\/span>.*/\1/p' index.html)
+          echo "version_number=${version_number}" >> "$GITHUB_OUTPUT"
         shell: bash
 
   dockerCI:
@@ -42,7 +42,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: maciejciukaj/lab10-app:1.0.2
+          tags: maciejciukaj/lab10-app:${{ needs.appVersion.outputs.version_number}}
 
   kubernetesCI:
     needs: [appVersion, dockerCI]
