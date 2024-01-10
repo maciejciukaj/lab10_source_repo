@@ -18,7 +18,7 @@ jobs:
       - name: set-output
         id: vars
         run: |
-          version_number=$(sed -n 's/.*<b>APP VER:<\/b> \(.*\)<\/span>.*/\1/p' index.html)
+          version_number=$(sed -n 's/.*<b>App Version:<\/b> \(.*\)<\/span>.*/\1/p' index.html)
           echo "version_number=${version_number}" >> "$GITHUB_OUTPUT"
         shell: bash
 
