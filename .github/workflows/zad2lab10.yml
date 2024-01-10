@@ -18,8 +18,8 @@ jobs:
       - name: set-output
         id: vars
         run: |
-          version_number=$(sed -n 's/.*<b>App Version:<\/b> \(.*\)<\/span>.*/\1/p' index.html)
-          echo "version_number=${version_number}" >> "$GITHUB_OUTPUT"
+          version_number=$(sed -n 's/.*<b>App Version:<\/b>\(.*\)<\/span>.*/\1/p' index.html)
+          echo "version_number=${version_number}" >> "$GITHUB_ENV"
         shell: bash
 
   dockerCI:
